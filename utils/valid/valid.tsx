@@ -8,7 +8,6 @@ const valid = (
   privacy: string,
   tagItems: any
 ) => {
-    console.log({date, time, venue, capacity, description, bannerItem, privacy, tagItems}, '123222222=213')
   if (!date || !time || !venue || !capacity || !description || !privacy)
     return "Please add all fields.";
   if (!bannerItem) return "Please add a banner fields.";

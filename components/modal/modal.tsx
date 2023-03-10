@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, memo, useState } from "react";
 
 interface IProps {
   isShow?: boolean;
@@ -78,4 +78,4 @@ const ModalBase: FC<IProps> = ({
   );
 };
 
-export default ModalBase;
+export default memo(ModalBase);

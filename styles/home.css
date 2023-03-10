@@ -35,28 +35,10 @@
     border-radius: 8px;
     height: 4rem;
   }
-  
-  .container-social-textleft {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 4px 8px;
-    max-width: 21rem;
-    max-height: auto;
-    height: 7rem;
-    background: #942F70;
-  }
-  
-  .container-social-text {
-    height: auto;
-    font-family: 'Neue Haas Grotesk Display Pro';
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 2px;
-    font-size: 2.75rem;
-    line-height: 60px;
-    color: #FFFFFF;
-    line-break: normal;
+
+  .social-input-custom1 {
+    border-radius: 8px;
+    height: 3rem;
   }
   
   .social-date-time {

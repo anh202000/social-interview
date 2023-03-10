@@ -1,27 +1,21 @@
-import { FC, useContext } from "react";
-import ModalBase from "@/components/modal/modal";
-import ImageLogoSVG from "@/public/imageLogo";
+import { FC } from "react";
 import Head from "next/head";
-import { useState } from "react";
 import DateLogo from "@/public/dateLogo";
 import TimeLogo from "@/public/time";
 import LocationLogon from "@/public/locationLogo";
 import CostLogo from "@/public/costLogo";
 import CapacityLogo from "@/public/capacityLogo";
-import { PrivacyData, TagData, listBanner } from "@/utils/mockUp_data";
-import valid from "@/utils/valid/valid";
-import { DataContext } from "@/utils/store/golobalState";
-import { postData } from "@/utils/service";
+import { listBanner } from "@/utils/mockUp_data";
 
 interface Iprops {
   props: any;
 }
 
-const DetailSocial: FC<Iprops> = (props: any) => {
+const DetailSocial: FC<Iprops> = (_props: any) => {
   return (
     <div className="home_page">
       <Head>
-        <title>Create Social</title>
+        <title>Detail Social</title>
       </Head>
 
       <section className="row text-secondary my-4">
@@ -30,12 +24,7 @@ const DetailSocial: FC<Iprops> = (props: any) => {
           {/* Social left head*/}
           <div className="container-social-left">
             <div className="container-detai-textleft mb-5">
-              <p className="container-detail-text">
-                <span>Web3 Founders & Designers Mixer + fireside</span>
-                <span>
-                  chat with Coinbase Senior Designer & Airfoil founder
-                </span>
-              </p>
+              <p className="container-detail-text">Web3 Founders chat Coinbase Senior</p>
             </div>
 
             {/* startAt */}
@@ -129,18 +118,18 @@ const DetailSocial: FC<Iprops> = (props: any) => {
 
         {/* Social right */}
         <div className="col-md-7 mb-5">
-            <img
-              className="container-detail-banner"
-              src={listBanner[0]?.url}
-              alt={listBanner[0]?.url}
-            />
+          <img
+            className="container-detail-banner"
+            src={listBanner[0]?.url}
+            alt={listBanner[0]?.url}
+          />
         </div>
       </section>
     </div>
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(_props: any) {
   // server side rendering
   return {
     props: {

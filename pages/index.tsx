@@ -23,6 +23,14 @@ const Home: FC<Iprops> = (props: any) => {
   const [manualApprove, setManualApprove] = useState(false);
   const [tagItems, seTagItems] = useState<any>([]);
   const [bannerItem, seBannerItem] = useState<string>("");
+
+  const initialTypeDateTime = {
+    date: "text",
+    time: "text",
+  };
+  const [changeTypeDateTime, setChangeTypeDateTime] =
+    useState(initialTypeDateTime);
+
   const initialContentForm = {
     startAt: "",
     date: "",
@@ -36,6 +44,7 @@ const Home: FC<Iprops> = (props: any) => {
     isManualApprove: false,
     privacy: "",
   };
+
   const [contentForm, setContentForm] = useState(initialContentForm);
 
   const { date, time, venue, capacity, price, description, privacy }: any =
@@ -59,6 +68,7 @@ const Home: FC<Iprops> = (props: any) => {
   const handleChangeBanner = (item: any) => {
     seBannerItem(item);
     onHideUpload();
+    dispatch({ type: 'NOTIFY', payload: { success: `choose banner ${bannerItem?.slice(bannerItem?.lastIndexOf('/') + 1, bannerItem?.length)} success` } })
   };
 
   const handleSubmit = async (e: any) => {
@@ -84,19 +94,21 @@ const Home: FC<Iprops> = (props: any) => {
     );
     if (errMsg) return dispatch({ type: "NOTIFY", payload: { error: errMsg } });
 
-    dispatch({ type: "NOTIFY", payload: { loading: true } })
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
 
     const res = await postData("social", body, null);
 
-    if (res?.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
+    if (res?.err)
+      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
-    dispatch({ type: 'NOTIFY', payload: { success: 'Successfull' } })
-    dispatch({ type: 'ADD_SOCIAL', payload: res })
+    dispatch({ type: "NOTIFY", payload: { success: "Successfull" } });
+    dispatch({ type: "ADD_SOCIAL", payload: res });
 
-    setContentForm(initialContentForm)
-    setManualApprove(false)
-    seTagItems([])
-    seBannerItem("")
+    setContentForm(initialContentForm);
+    setManualApprove(false);
+    seTagItems([]);
+    seBannerItem("");
+    setChangeTypeDateTime(initialTypeDateTime);
   };
 
   const onShowUpload = () => {
@@ -129,10 +141,8 @@ const Home: FC<Iprops> = (props: any) => {
           <div className="col-md-5">
             {/* Social left head*/}
             <div className="container-social-left">
-              <div className="container-social-textleft mb-5">
-                <p className="container-social-text text-decoration-none">
-                  Untitile Event
-                </p>
+              <div className="container-detai-textleft mb-5">
+                <p className="container-detail-text">Untitile Event</p>
               </div>
 
               {/* startAt */}
@@ -143,11 +153,23 @@ const Home: FC<Iprops> = (props: any) => {
                     <input
                       className="form-control social-input-custom"
                       name="date"
-                      type="date"
+                      type={changeTypeDateTime?.date}
                       value={date}
                       placeholder="Date"
                       min="2023-03-10"
                       max="2023-04-10"
+                      onFocus={() =>
+                        setChangeTypeDateTime({
+                          ...changeTypeDateTime,
+                          date: "date",
+                        })
+                      }
+                      onBlur={() =>
+                        setChangeTypeDateTime({
+                          ...changeTypeDateTime,
+                          date: "text",
+                        })
+                      }
                       onChange={handleChangeInput}
                     />
                   </div>
@@ -157,13 +179,25 @@ const Home: FC<Iprops> = (props: any) => {
                   <div className="social-date-time mb-3">
                     <TimeLogo />
                     <input
-                      type="time"
                       className="form-control social-input-custom"
+                      type={changeTypeDateTime.time}
                       name="time"
+                      value={time}
                       placeholder="Time"
                       min="00:00"
                       max="23:59"
-                      value={time}
+                      onFocus={() =>
+                        setChangeTypeDateTime({
+                          ...changeTypeDateTime,
+                          time: "time",
+                        })
+                      }
+                      onBlur={() =>
+                        setChangeTypeDateTime({
+                          ...changeTypeDateTime,
+                          time: "text",
+                        })
+                      }
                       onChange={handleChangeInput}
                     />
                   </div>
@@ -177,7 +211,7 @@ const Home: FC<Iprops> = (props: any) => {
                     <LocationLogon />
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control social-input-custom1"
                       name="venue"
                       placeholder="Veneu"
                       value={venue}
@@ -194,7 +228,7 @@ const Home: FC<Iprops> = (props: any) => {
                     <CapacityLogo />
                     <input
                       type="number"
-                      className="form-control rounded"
+                      className="form-control social-input-custom1"
                       name="capacity"
                       placeholder="Capacity"
                       value={capacity}
@@ -209,7 +243,7 @@ const Home: FC<Iprops> = (props: any) => {
                     <CostLogo />
                     <input
                       type="number"
-                      className="form-control rounded"
+                      className="form-control social-input-custom1"
                       name="price"
                       placeholder="Cost"
                       value={price}
@@ -351,7 +385,7 @@ const Home: FC<Iprops> = (props: any) => {
 
           <div className="col-md-5">
             <button type="submit" className="btn btn-warning btn-submit-social">
-              Create social
+              <p className="font-special-p pt-2"> Create social</p>
             </button>
           </div>
         </section>

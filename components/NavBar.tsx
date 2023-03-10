@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import LogoSvg from "@/public/logo";
+import SelectLogo from "@/public/selectLogo";
 
 function NavBar() {
   return (
@@ -49,6 +50,8 @@ function NavBar() {
           <li className="nav-item li-mr">
             <a className={"nav-link navbar-item-li"}>
               <i className="fas fa-user" aria-hidden="true"></i> Clubs
+              <span> </span>
+              <SelectLogo />
             </a>
           </li>
 

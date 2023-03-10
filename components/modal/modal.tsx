@@ -14,7 +14,6 @@ const ModalBase: FC<IProps> = ({
   onClose,
   data,
   title,
-  content,
   onSubmit,
 }) => {
   const [selected, setSelected] = useState<any>();

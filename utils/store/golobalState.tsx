@@ -1,8 +1,7 @@
 import { createContext, useReducer } from 'react'
 import reducers from './reducer'
 
-export const DataContext: any = createContext()
-
+export const DataContext: any = createContext(null)
 
 export const DataProvider = ({children}: any) => {
     const initialState = { 

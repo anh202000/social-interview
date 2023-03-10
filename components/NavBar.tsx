@@ -3,11 +3,12 @@ import Link from "next/link";
 import LogoSvg from "@/public/logo";
 
 function NavBar() {
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="m-1">
-        <LogoSvg/>
+        <Link href="/">
+          <LogoSvg />
+        </Link>
       </div>
 
       <button
@@ -22,7 +23,10 @@ function NavBar() {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navbarNavDropdown"
+      >
         <ul className="navbar-nav">
           <li className="nav-item li-mr">
             <a className={"nav-link navbar-item-li"}>

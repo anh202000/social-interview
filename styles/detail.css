@@ -1,0 +1,53 @@
+
+  /* Detail */
+
+  .container-detai-textleft {
+    display: flex;
+    padding: 8px 8px; 
+    max-height: auto;
+    background-color: #942F70 ;
+  }
+
+  .container-detail-text {
+    height: auto;
+    font-family: 'Neue Haas Grotesk Display Pro';
+    font-style: normal;
+    max-width: 100%;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    line-height: 1.6;
+  }
+
+  .detai-text-datetime {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 40px;
+    color: #333333;
+    margin-top: 10px;
+  }
+
+  .detai-text-vanue {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 40px;
+    color: #333333;
+    margin-top: 10px;
+  }
+
+  .container-detai-decription {
+    display: flex;
+    padding: 8px; 
+    max-height: 100%;
+    margin-left: 10px;
+  }
+
+  .container-detail-banner {
+    width: 100%;
+    height: 445px;  
+    background: rgba(242, 242, 242, 0.1);
+    border-radius: 0px 64px;
+    cursor: pointer;
+  }

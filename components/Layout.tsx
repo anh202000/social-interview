@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
+import Notify from "./notify/Notify";
 
 function Layout({ children }: any) {
     return (
@@ -9,8 +10,7 @@ function Layout({ children }: any) {
             </div>
 
             <div className="container">
-                {/* <Notify />
-                <Modal /> */}
+                <Notify />
                 {children}
             </div>
 

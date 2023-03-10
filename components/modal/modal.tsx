@@ -67,7 +67,7 @@ const ModalBase: FC<IProps> = ({
               <button
                 type="button"
                 className="btn btn-warning"
-                onClick={() => onSubmit(selected)}
+                onClick={() => onSubmit(selected?.url)}
               >
                 Save changes
               </button>

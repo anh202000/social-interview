@@ -1,4 +1,4 @@
-export const PrivacyData = [
+export const PrivacyData: Array<any> = [
   {
     id: 1,
     name: "Public",
@@ -13,11 +13,11 @@ export const PrivacyData = [
   },
 ];
 
-export const TagData = [
+export const TagData: Array<any> = [
     'Product', 'Marketing', 'Design'
 ]
 
-export const listBanner = [
+export const listBanner: Array<any> = [
     {
       id: 1,
       url: "https://supermomos-app-resources-us.s3.amazonaws.com/Images/SocialBanner/banner_1.jpg",

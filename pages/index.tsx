@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import ModalBase from "@/components/modal/modal";
 import ImageLogoSVG from "@/public/imageLogo";
 import Head from "next/head";
@@ -9,16 +9,20 @@ import LocationLogon from "@/public/locationLogo";
 import CostLogo from "@/public/costLogo";
 import CapacityLogo from "@/public/capacityLogo";
 import { PrivacyData, TagData, listBanner } from "@/utils/mockUp_data";
+import valid from "@/utils/valid/valid";
+import { DataContext } from "@/utils/store/golobalState";
+import { postData } from "@/utils/service";
 
 interface Iprops {
   props: any;
 }
 
 const Home: FC<Iprops> = (props: any) => {
+  const { state, dispatch }: any = useContext(DataContext);
   const [showModalUpload, setShowModalUpload] = useState<boolean>(false);
   const [manualApprove, setManualApprove] = useState(false);
   const [tagItems, seTagItems] = useState<any>([]);
-  const [bannerItem, seBannerItem] = useState<string>('');
+  const [bannerItem, seBannerItem] = useState<string>("");
   const initialContentForm = {
     startAt: "",
     date: "",
@@ -34,23 +38,11 @@ const Home: FC<Iprops> = (props: any) => {
   };
   const [contentForm, setContentForm] = useState(initialContentForm);
 
-  const {
-    startAt,
-    date,
-    time,
-    venue,
-    capacity,
-    price,
-    description,
-    banner,
-    tags,
-    isManualApprove,
-    privacy,
-  }: any = contentForm;
+  const { date, time, venue, capacity, price, description, privacy }: any =
+    contentForm;
 
   const handleChangeInput = (e: any) => {
     const { name, value } = e.target;
-    console.log(name, value, "123");
     setContentForm({ ...contentForm, [name]: value });
   };
 
@@ -65,12 +57,46 @@ const Home: FC<Iprops> = (props: any) => {
   };
 
   const handleChangeBanner = (item: any) => {
-    seBannerItem(item)
-    onHideUpload()
-  }
+    seBannerItem(item);
+    onHideUpload();
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const body = {
+      ...contentForm,
+      title:
+        "Web3 Founders & Designers Mixer + fireside chat with Coinbase Senior Designer & Airfoil founder",
+      startAt: `${date + "T" + time + "+000"}`,
+      banner: bannerItem,
+      tags: tagItems,
+    };
+
+    const errMsg = valid(
+      date,
+      time,
+      venue,
+      capacity,
+      description,
+      bannerItem,
+      privacy,
+      tagItems
+    );
+    if (errMsg) return dispatch({ type: "NOTIFY", payload: { error: errMsg } });
+
+    dispatch({ type: "NOTIFY", payload: { loading: true } })
+
+    const res = await postData("social", body, null);
+
+    if (res?.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } })
+
+    dispatch({ type: 'NOTIFY', payload: { success: 'Successfull' } })
+    dispatch({ type: 'ADD_SOCIAL', payload: res })
+
+    setContentForm(initialContentForm)
+    setManualApprove(false)
+    seTagItems([])
+    seBannerItem("")
   };
 
   const onShowUpload = () => {
@@ -247,8 +273,8 @@ const Home: FC<Iprops> = (props: any) => {
                             <input
                               className="form-check-input"
                               type="radio"
-                              name="inlineRadioOptions"
-                              value={item?.id}
+                              name="privacy"
+                              value={item?.name}
                               id="inlineRadio1"
                               onChange={handleChangeInput}
                             />
@@ -324,7 +350,9 @@ const Home: FC<Iprops> = (props: any) => {
           </div>
 
           <div className="col-md-5">
-          <button type="button" className="btn btn-warning btn-submit-social">Create social</button>
+            <button type="submit" className="btn btn-warning btn-submit-social">
+              Create social
+            </button>
           </div>
         </section>
       </form>

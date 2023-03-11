@@ -1,6 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+module.exports = {
+  env: {
+    "BASE_URL_API": "https://640b032765d3a01f980d90bc.mockapi.io/interview/social",
+  }
 }
-
-module.exports = nextConfig

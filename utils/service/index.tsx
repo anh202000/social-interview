@@ -1,6 +1,4 @@
-// const baseUrl = process.env.BASE_URL
-// const baseUrl = 'https://api.supermomos-dev.com/'
-const baseUrl = "https://640b032765d3a01f980d90bc.mockapi.io/interview/social";
+const baseUrl = process.env.BASE_URL_API
 
 export const getData = async (url: any, token: any) => {
     const res = await fetch(`${baseUrl}/api/${url}`, {

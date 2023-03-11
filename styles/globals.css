@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: linear-gradient(138.11deg, #FEF452 0%, #942F70 121.92%);
 }
 
 a {
@@ -79,13 +80,8 @@ p{
 
 .container-globals {
   width: 100%; 
-  min-height: 170vh !important;
+  height: auto;
   max-width: 300vh;
-  background: linear-gradient(138.11deg, #FEF452 0%, #942F70 121.92%);
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
   }
 
 /* layout */
